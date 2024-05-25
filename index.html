@@ -1,6 +1,29 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <script src="node_modules/hijrah-date/hijrah-date.js"></script>
+        <title>Life X Deen.</title>
+        <link rel="stylesheet" href="css/home.css">
+    </head>
     <body>
-        <h1>One day at a Time.</h1>
+        <h1>Life X Deen.</h1>
+        <h2>One day at a time.</h2>
+        <h3>Gregorian/Hijri Date:</h3>
+        <span id="datetime", class="datetime"></span>
+        <script>
+            let monthList = ["Muḥarram", "Ṣafar", "Rabīʿ al-Awwal", "Rabīʿ al-Thānī", "Jumādā al-Awwal", "Jumādā al-Thānī,", "Rajab", "Shaʿbān", "Ramaḍān", "Shawwāl", "Dhū al-Qaʿdah", "Dhū al-Ḥijjah"]
+            function getDate() {
+                let now = new Date()
+                let readable = now.toLocaleString()
+                let hijrah = new HijrahDate(now)
+                let hijReadable = hijrah.getFullYear() + " " + monthList[hijrah.getMonth()] + " " + hijrah.getDate()
+                document.querySelector('#datetime').textContent = readable + "\n" + hijReadable;
+            }
+
+            setInterval(getDate, 1000)
+            
+        </script>
+        
+        
     </body>
 </html>
