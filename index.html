@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="node_modules/hijrah-date/hijrah-date.js"></script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="../node_modules/hijrah-date/hijrah-date.js""></script>
         <title>Life X Deen.</title>
-        <link rel="stylesheet" href="css/home.css">
+        <link type="text/css" href="css/home.css" rel="stylesheet">
     </head>
     <body>
         <h1>Life X Deen.</h1>
         <h2>One day at a time.</h2>
         <h3>Gregorian/Hijri Date:</h3>
+        <button name="login" type="button">Login</button>
         <span id="datetime", class="datetime"></span>
         <script>
             let monthList = ["Muḥarram", "Ṣafar", "Rabīʿ al-Awwal", "Rabīʿ al-Thānī", "Jumādā al-Awwal", "Jumādā al-Thānī,", "Rajab", "Shaʿbān", "Ramaḍān", "Shawwāl", "Dhū al-Qaʿdah", "Dhū al-Ḥijjah"]
@@ -23,7 +26,6 @@
             setInterval(getDate, 1000)
             
         </script>
-        
         
     </body>
 </html>

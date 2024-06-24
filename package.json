@@ -2,10 +2,9 @@
   "name": "life-x-deen",
   "version": "1.0.0",
   "description": "Life X Deen is a habit-tracking web app designed to combine acts of Ibadah/worship with positive worldly habits. \r Using this app, Muslims worldwide can become the best in the dunya and akhirah In Sha Allah.",
-  "main": "index.html",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js && npx http-server"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,7 @@
   },
   "homepage": "https://github.com/aliusa93/life-x-deen#readme",
   "dependencies": {
+    "express": "^4.19.2",
     "hijrah-date": "^1.0.3"
   }
 }
