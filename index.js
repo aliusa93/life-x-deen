@@ -2,27 +2,101 @@ const express = require('express')
 const app = express();
 const port = 3000;
 const path = require('path');
+const User = require('./js/login-schema')
+const bcrypt = require('bcrypt')
+const saltRounds = 10;
 
-app.get('/life-x-deen', (req, res) => {
+
+
+// Middleware
+app.use(express.json());
+
+// Use the built-in middleware to parse URL-encoded bodies
+app.use(express.urlencoded({ extended: true }));
+
+
+// Home Page
+
+app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
-    console.log("Sent file.")
 });
 
 app.get('/css/home.css', (req, res) => {
     res.sendFile(path.join(__dirname, "./css", "home.css"));
-    console.log("Sent file.")
 });
 
 app.get('/node_modules/hijrah-date/hijrah-date.js', (req, res) => {
     res.sendFile(path.join(__dirname, "./node_modules/hijrah-date", "hijrah-date.js"))
-    console.log("Sent file.")
 })
 
 
+// login/register pages
+app.get('/login', (req, res) => {
+    res.sendFile(path.join(__dirname, "./pages", "login.html"));
+});
+
+app.get('/register', (req,res) => {
+    res.sendFile(path.join(__dirname, "./pages", "register.html"));
+})
+
+app.post('/register', async (req, res) => {
+    const { username, password } = req.body;
+    try {
+        // Check if the user already exists
+        const existingUser = await User.findOne({ $or: [{ username }] });  // Check for existing username or email
+
+        if (existingUser) {
+            if (existingUser.username === username) {
+                return res.status(400).json({ error: 'Username already taken' });  // Send an error response for existing username
+            }
+        }
+    }
+    
+    catch(err) {
+
+    }
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+        if (err) throw err;
+
+        const newUser = new User({
+            username: username,
+            password: hash
+        });
+
+        newUser.save().then(res.send("User created 👍🏽"))
+    })
+})
+
+app.post('/login', (req, res) => {
+    const { username, password } = req.body;
+
+    User.findOne({ username: username }, function(err, user) {
+        if (err) throw err;
+
+        if (!user) {
+            res.send('Invalid username or password');
+            return;
+        }
+
+        bcrypt.compare(password, user.password, function(err, result) {
+            if (err) throw err;
+
+            if (result === true) {
+                req.session.user = username;
+                res.send('Login successful');
+            } else {
+                res.send('Invalid username or password');
+            }
+        });
+    });
+});
 
 
 
 
+
+
+// Run
 app.listen(port, () => {
     console.log(`Server running on port ${port} Alhamdulilah.`);
 });
