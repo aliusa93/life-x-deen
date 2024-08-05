@@ -43,7 +43,7 @@ app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     try {
         // Check if the user already exists
-        const existingUser = await User.findOne({ $or: [{ username }] });  // Check for existing username or email
+        const existingUser = await User.findOne({ $or: [{ username }] });  // Check for existing username
 
         if (existingUser) {
             if (existingUser.username === username) {
@@ -70,25 +70,25 @@ app.post('/register', async (req, res) => {
 app.post('/login', (req, res) => {
     const { username, password } = req.body;
 
-    User.findOne({ username: username }, function(err, user) {
-        if (err) throw err;
-
-        if (!user) {
-            res.send('Invalid username or password');
-            return;
+    async function log() {
+        const validUser = await User.findOne({ username: username })
+        if(!validUser) {
+            res.send("Invalid user or password ❌.")
+        } else {
+            bcrypt.compare(password, validUser.password, function(err, result) {
+                if (err) throw err;
+    
+                if (result === true) {
+                    res.send('Login successful ✅');
+                } else {
+                    res.send('Invalid username or password ❌');
+                }
+            });
         }
+    }
 
-        bcrypt.compare(password, user.password, function(err, result) {
-            if (err) throw err;
+    log()
 
-            if (result === true) {
-                req.session.user = username;
-                res.send('Login successful');
-            } else {
-                res.send('Invalid username or password');
-            }
-        });
-    });
 });
 
 

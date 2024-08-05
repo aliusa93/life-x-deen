@@ -14,5 +14,17 @@ h3 {
 }
 .datetime {
     color: blue;
-    font-size: 18px;
+    text-align: center;
+}
+.registerButton {
+    position: relative;
+    background-color:red;
+    bottom: 100px;
+    left: 1400px;
+}
+.loginButton {
+    position: relative;
+    background-color:red;
+    bottom: 100px;
+    left: 1400px;
 }
