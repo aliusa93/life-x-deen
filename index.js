@@ -39,6 +39,10 @@ app.get('/register', (req,res) => {
     res.sendFile(path.join(__dirname, "./pages", "register.html"));
 })
 
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(__dirname, "./pages", "customHome.html"));
+})
+
 app.post('/register', async (req, res) => {
     const { username, password } = req.body;
     try {
@@ -79,7 +83,8 @@ app.post('/login', (req, res) => {
                 if (err) throw err;
     
                 if (result === true) {
-                    res.send('Login successful ✅');
+                    module.exports = { username }
+                    res.redirect('/home')
                 } else {
                     res.send('Invalid username or password ❌');
                 }
