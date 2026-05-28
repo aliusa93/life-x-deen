@@ -1,0 +1,70 @@
+/* styles.css */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    header {
+      background: #009000;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    nav {
+      background: #444;
+      padding: 10px;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    main {
+      padding: 40px;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      min-height: 70vh;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #222;
+      color: white;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #0077ff;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+    }
+
+    .button:hover {
+      background: #005fcc;
+    }
+    .welcome-message {
+      margin-top: 20px;
+      font-size: 1.2em;
+      line-height: 1.8;
+    }
