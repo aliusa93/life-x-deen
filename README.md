@@ -1,0 +1,2 @@
+  Welcome to Life-X-Deen! This website is designed to help you track your ibadah (worship), wordly deeds, and news. Whether you're looking to improve your spiritual journey, stay informed about current events, or simply want a place to reflect on your daily actions, Life-X-Deen has you covered! <br><br>
+  Please consider donating to support our project and we also urge you to check out the addtional humanitarian charities that we have listed down below.
